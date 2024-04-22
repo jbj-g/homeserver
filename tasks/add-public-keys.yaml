@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install public keys
+      authorized_key:
+        user: dev
+        state: present
+        key: "{{ lookup('file', '/home/manager/.ssh/homeserver.pub') }}"
+
+    - name: Change sudoers file
+      replace:
+        path: /etc/sudoers
+        regexp: '^%wheel ALL=(ALL) ALL'
+        replace: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'

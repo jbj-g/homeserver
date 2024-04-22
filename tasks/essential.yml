@@ -1,0 +1,24 @@
+---
+- name: Update packages
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure packages are up-to-date
+      dnf:
+        name: "*"
+        state: latest
+
+- name: Install essential packages
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install required packages
+      package:
+        name:
+          - neovim
+          - htop
+          - wget
+          - netcat
+          - zoxide
+          - fzf
+        state: latest

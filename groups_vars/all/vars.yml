@@ -1,0 +1,6 @@
+username: dev
+packages: 
+  - neovim
+  - htop
+  - netcat
+  - zoxide

@@ -1,0 +1,31 @@
+[master]
+#localhost
+management ansible_host=localhost ansible_user=dev ansible_connection=local ansible_ssh_private_key_file=/home/manager/.ssh/homeserver
+
+[home]
+#172.30.100.20
+dds-dhcp ansible_host=172.30.100.20 ansible_user=dev ansible_connection=ssh ansible_ssh_private_key_file=/home/manager/.ssh/homeserver
+dds_dns ansible_host=172.30.100.15 ansible_user=root ansible_connection=ssh ansible_ssh_private_key_file=/home/manager/.ssh/homeserver
+dds_tftp ansible_host=172.30.100.10 ansible_user=dev ansible_connection=ssh ansible_ssh_private_key_file=/home/manager/.ssh/homeserver
+
+[win]
+dss_win ansible_host=172.30.100.12 
+
+[home:vars]
+ansible_ssh_users=dev
+ansible_ssh_private_key_file=/home/manager/.ssh/homeserver
+
+[win:vars]
+ansible_user=dev
+ansible_password="devpw!2#"
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_scheme=https
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_kerberos_delegation=true
+
+
+[master:vars]
+ansible_user=dev
+ansible_connection=ssh
+ansible_ssh_private_key_file=/home/manager/.ssh/homeserver

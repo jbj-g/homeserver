@@ -1,0 +1,8 @@
+---
+- name: Install Nmap using Chocolatey
+  hosts: win
+  tasks:
+    - name: Install Nmap
+      win_chocolatey:
+        name: nmap
+        state: present
